@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  tg:
+    build:
+      context: .
+      dockerfile: tgbot/Dockerfile
+    working_dir: /tgbot
+    command:
+      - go
+      - run
+      - TelegramBot.go
+  grpc:
+    build:
+      context: .
+      dockerfile: grpc/Dockerfile
+    working_dir: /grpc

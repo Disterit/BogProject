@@ -1,0 +1,31 @@
+syntax = 'proto3';
+
+package proto;
+
+option go_package = "github.com/Disterit/BogProject/pkg/api";
+
+service Adder {
+  rpc Add(AddRequest) returns (AddResponse) {}
+}
+
+service TelegramBot {
+  rpc getMessages(MessageRequestTelegram) returns (MessageResponse) {}
+}
+
+message MessageResponse {
+  repeated MessageRequestTelegram messages = 1;
+}
+
+message MessageRequestTelegram {
+  string user = 1;
+  string message = 2;
+}
+
+message AddRequest {
+  int32 x = 1;
+  int32 y = 2;
+}
+
+message AddResponse {
+  int32 result = 1;
+}
