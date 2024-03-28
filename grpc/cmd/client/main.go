@@ -5,32 +5,34 @@ import (
 	"context"
 	"fmt"
 	"google.golang.org/grpc"
+	"log"
 )
 
 func main() {
-	conn, err := grpc.Dial("tcp:8080", grpc.WithInsecure())
+	// Устанавливаем соединение с сервером gRPC.
+	conn, err := grpc.Dial("localhost:8080", grpc.WithInsecure())
 	if err != nil {
-		// Обработка ошибки
+		log.Fatalf("Не удалось установить соединение с сервером: %v", err)
 	}
 	defer conn.Close()
 
-	// Создание клиента gRPC
+	// Создаем клиента gRPC.
 	client := api.NewTelegramBotClient(conn)
 
-	// Создание объекта запроса
+	// Создаем объект запроса.
 	request := &api.MessageRequestTelegram{
 		User:    "user1",
 		Message: "Hello, server!",
 	}
 
-	// Вызов метода на сервере
+	// Вызываем метод на сервере.
 	response, err := client.GetMessages(context.Background(), request)
 	if err != nil {
-		// Обработка ошибки
+		log.Fatalf("Ошибка при вызове метода GetMessages: %v", err)
 	}
 
+	// Выводим полученные сообщения на консоль.
 	for _, message := range response.Messages {
 		fmt.Println(message.User, message.Message)
 	}
-
 }

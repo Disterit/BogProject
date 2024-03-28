@@ -8,18 +8,20 @@ import (
 )
 
 func main() {
+	// Создаем сервер gRPC.
 	server := grpc.NewServer()
-	srv := &api.GRPCServer{}
 
-	api.RegisterTelegramBotServer(server, srv)
+	// Регистрируем наш сервер в качестве сервера TelegramBot.
+	api.RegisterTelegramBotServer(server, &api.GRPCServer{})
 
+	// Слушаем на порту 8080.
 	listen, err := net.Listen("tcp", ":8080")
 	if err != nil {
-		log.Fatal(err)
+		log.Fatalf("Ошибка при запуске сервера: %v", err)
 	}
 
-	err = server.Serve(listen)
-	if err != nil {
-		log.Fatal(err)
+	// Запускаем сервер.
+	if err := server.Serve(listen); err != nil {
+		log.Fatalf("Ошибка при запуске сервера: %v", err)
 	}
 }
