@@ -11,7 +11,7 @@ import (
 
 type Currency struct {
 	digitalCode int
-	litterCode  string
+	LitterCode  string
 	Units       int
 	Name        string
 	Rate        float32
@@ -35,7 +35,7 @@ func ParcerCurrency() []Currency {
 
 	currencyRUB := Currency{
 		digitalCode: 643,
-		litterCode:  "RUB",
+		LitterCode:  "RUB",
 		Units:       1,
 		Name:        "Российский рубль",
 		Rate:        1,
@@ -65,7 +65,7 @@ func ParcerCurrency() []Currency {
 
 			currency := Currency{
 				digitalCode: digitalCode,
-				litterCode:  litterCode,
+				LitterCode:  litterCode,
 				Units:       units,
 				Name:        name,
 				Rate:        float32(rate),
