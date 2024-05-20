@@ -19,7 +19,7 @@ var numericKeyboard = tgbotapi.NewInlineKeyboardMarkup(
 )
 
 func main() {
-	bot, err := tgbotapi.NewBotAPI("7072095600:AAFeiodIFQGONm7zTItKGLcml6_xMsg9C2w")
+	bot, err := tgbotapi.NewBotAPI("")
 	if err != nil {
 		log.Panic(err)
 	}
